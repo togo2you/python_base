@@ -22,44 +22,44 @@ while True:
 print('-' * 8 + '前置练习' + '-' * 8)
 
 
-# 手写迭代器实现需求：让for循环可以比遍历Person类的实例对象
+# 手写迭代器实现需求：让for循环可以遍历Person类的实例对象
 # -------------------------------实现方式1-------------------------------
-# class Person:
-#     def __init__(self, name, age, gender, address):
-#         self.name = name
-#         self.age = age
-#         self.gender = gender
-#         self.address = address
-#
-#     def __iter__(self):
-#         return PersonIterator(self)  # 返回的迭代器也是实例对象
-#
-#
-# class PersonIterator:
-#     def __init__(self, p):
-#         # 保存外部传入的数据
-#         self.p = p
-#         # 设置迭代器指针的初始化状态
-#         self.index = 0
-#         #设置传入对象要遍历的数据
-#         self.attrs = [p.name, p.age, p.gender, p.address]
-#
-#     #迭代器的iter()方法会返回迭代器自身
-#     def __iter__(self):
-#         return self
-#
-#     #迭代器每次调用__next__方法，会根据当前状态，返回下一个元素
-#     def __next__(self):
-#         #若指针超出范围，抛出StopIteration异常
-#         if self.index >= len(self.attrs):
-#             raise StopIteration
-#         #若指针index为超出范围，获取要返回的内容
-#         value = self.attrs[self.index]
-#         #更新迭代器index的位置
-#         self.index += 1
-#
-#         return value
-#
+class Person:
+    def __init__(self, name, age, gender, address):
+        self.name = name
+        self.age = age
+        self.gender = gender
+        self.address = address
+
+    def __iter__(self):
+        return PersonIterator(self)  # 返回的迭代器也是实例对象
+
+
+class PersonIterator:
+    def __init__(self, p):
+        # 保存外部传入的数据
+        self.p = p
+        # 设置迭代器指针的初始化状态
+        self.index = 0
+        #设置传入对象要遍历的数据
+        self.attrs = [p.name, p.age, p.gender, p.address]
+
+    #迭代器的iter()方法会返回迭代器自身
+    def __iter__(self):
+        return self
+
+    #迭代器每次调用__next__方法，会根据当前状态，返回下一个元素
+    def __next__(self):
+        #若指针超出范围，抛出StopIteration异常
+        if self.index >= len(self.attrs):
+            raise StopIteration
+        #若指针index为超出范围，获取要返回的内容
+        value = self.attrs[self.index]
+        #更新迭代器index的位置
+        self.index += 1
+
+        return value
+
 
 # -------------------------------实现方式2-------------------------------
 
