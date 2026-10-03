@@ -12,18 +12,18 @@ def copy_file(index):
             dst.write(data)
 
 if __name__ == '__main__':
-    # print('===== 使用多进程完成【IO密集型任务】 =====')
-    # start = time.time()
-    # with ProcessPoolExecutor(4) as executor:
-    #     for i in range(4):
-    #         executor.submit(copy_file, i)
-    # end = time.time() - start
-    # print(f'多进程耗时：{end} 秒')
-
-    print('===== 使用多线程完成【IO密集型任务】 =====')
+    print('===== 使用多进程完成【IO密集型任务】 =====')
     start = time.time()
-    with ThreadPoolExecutor(4) as executor:
+    with ProcessPoolExecutor(4) as executor:
         for i in range(4):
             executor.submit(copy_file, i)
     end = time.time() - start
-    print(f'多线程耗时：{end} 秒')
+    print(f'多进程耗时：{end} 秒')
+
+    # print('===== 使用多线程完成【IO密集型任务】 =====')
+    # start = time.time()
+    # with ThreadPoolExecutor(4) as executor:
+    #     for i in range(4):
+    #         executor.submit(copy_file, i)
+    # end = time.time() - start
+    # print(f'多线程耗时：{end} 秒')
